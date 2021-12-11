@@ -72,7 +72,7 @@ public class barcodeDistanceFunctions
     			//automatically assume element is at bar3
     			bar = 3;
         		telemetry.addLine("Found at bar 3.");
-        		telemetry.update()
+        		telemetry.update()；
     		}
     	}
         return bar;

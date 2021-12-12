@@ -1,0 +1,19 @@
+This is the readme for the python opencv example code
+
+contours and sliders are taken from an earlier project of arepikov's, source unknown before that.
+
+BOTH OF THESE NEED OPENCV TO WORK. Run
+pip3 install opencv-python
+OR
+pip install opencv-python
+
+depending on how things are setup for you. (probably pip3)
+
+Sliders takes the video stream from an attached external camera to your computer (if it doesn't work, and instead just launches a small window with a few sliders, go and change the 1 in line 57 to a 0)
+It then allows you to edit the HSV sliders until you find a good enough balance for your project
+to get the values from the sliders, press the "p" key, and it should print out the values into the console
+
+contours takes the values (if it errors out with a cv2.error on the line cv2.imshow("Video Feed", vs.read()) you need to go and change the 1 in line 11 to 0
+It then draws the largest contour onscreen, along with a crosshair pointing to it.
+To put the values printed out with sliders into contours, replace them in line 30. Don't worry about the FrameHSV argument, the second argument is the minimum bounds (the first argument printed) and the third is the max bounds (the second thing printed). Keep the extra parentheses; they're needed for the code to work.
+

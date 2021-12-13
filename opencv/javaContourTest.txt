@@ -1,0 +1,57 @@
+Mat dilated = new Mat();
+Mat hierarchey = new Mat();
+List<MatOfPoint> contours = new ArrayList<>();
+
+Thresh - I have
+
+//dilate the image, to make it better for the next step
+Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(5, 5));
+Imgproc.dilate(thresh, dilated, kernel);
+
+
+public static void findContours​(Mat image, java.util.List<MatOfPoint> contours, Mat hierarchy, int mode, int method)
+
+//find contours
+Imgproc.findContours(dilated, contours, hierarchey, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+
+//draw all contours onto the input image and return
+/*
+Imgproc.drawContours(input, contours, -1, new Scalar(0,255,0), 3);
+return input;
+*/
+
+//find the largest contour
+double maxVal = 0;
+int maxValIdx = 0;
+if (!contours.isEmpty()) {
+    for (int contourIdx = 0; contourIdx < contours.size(); contourIdx++)
+    {
+        double contourArea = Imgproc.contourArea(contours.get(contourIdx));
+        if (maxVal < contourArea)
+        {
+            maxVal = contourArea;
+            maxValIdx = contourIdx;
+        }
+    }
+} 
+
+//make sure the contour is big enough. if not, put some text on screen and return.
+if (maxVal < 200) 
+{
+    Imgproc.putText​(input, "no target", new Point(10, 20), Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 0));
+    return input;
+}
+
+//draw largest contour onto input image
+//Imgproc.drawContours(input, contours, maxValIdx, new Scalar(0,255,0), 3);
+
+//find the center of the largest contour
+Moments mu = Imgproc.moments(contours.get(maxValIdx);
+int x = (int) (mu.get_m10() / mu.get_m00());
+int y = (int) (mu.get_m01() / mu.get_m00());
+
+//draw a circle at the center of the contour, write where it is, and exit
+Core.circle(input, new Point(x, y), 2, new Scalar(255,0,0));
+Imgproc.putText​(input, "target at x = " + x, new Point(10, 20), Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 0));
+
+return input;

@@ -27,7 +27,7 @@ while True:
     frameHSV = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
 
     #All I know is that the test version used this sytax and worked
-    thresh = cv2.inRange(frameHSV,(0, 112, 95), (180, 177, 255))
+    thresh = cv2.inRange(frameHSV,(40, 100, 0), (90,225,150))
 
     thresh = cv2.dilate(thresh, None, iterations=2)
     cnts = cv2.findContours(thresh.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
